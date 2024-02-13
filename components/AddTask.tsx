@@ -11,7 +11,7 @@ const AddTask = ({ task, setTask, handleCreateTask }: AddTaskProps) => {
         size="lg"
         onChange={(e) => setTask(e.target.value)}
         value={task}
-        style={{ background: "#1a1a1a" }}
+        style={{ background: "#1a1a1a", color: "#FFF" }}
         _placeholder={{ color: "#FFFFFF" }}
       />
       <Button colorScheme="twitter" size="lg" onClick={handleCreateTask}>
