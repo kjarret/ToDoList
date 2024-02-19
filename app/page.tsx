@@ -1,7 +1,8 @@
 "use client";
 import Header from "@/components/Header";
-import { Flex, Spinner } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import AddTask from "@components/AddTask";
+import Loading from "@components/Loading";
 import NoTask from "@components/NoTask";
 import Task from "@components/Task";
 import { ITask } from "@types";
@@ -46,7 +47,22 @@ export default function Home() {
 
   const handleCompleteTask = async () => {};
 
-  const handleDeleteTask = async () => {};
+  const handleDeleteTask = async (id: string) => {
+    try {
+      const response = await fetch(`/api/task/delete/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setAllTasks((prevTasks) =>
+          prevTasks.filter((task: ITask) => task._id !== id)
+        );
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchTasks();
@@ -61,7 +77,7 @@ export default function Home() {
         handleCreateTask={handleCreateTask}
       />
       {isLoading ? (
-        <Spinner m="auto" display="flex" />
+        <Loading />
       ) : (
         <>
           <Flex direction="column" p="2rem">
