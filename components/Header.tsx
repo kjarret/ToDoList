@@ -5,10 +5,10 @@ const Header = () => {
     <>
       <Flex p="2rem" direction="column" alignItems="center">
         <Heading as="h1" size="4xl" noOfLines={1} className="tasklist-title">
-          TaskList.io
+          ToDoList.io
         </Heading>
         <Text mt="1rem" className="tasklist-slogan">
-          TaskList est un outil open-source qui vous simplifie la vie.
+          ToDoList est un outil open-source qui vous simplifie la vie.
         </Text>
       </Flex>
     </>
