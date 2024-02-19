@@ -13,6 +13,6 @@ export const POST = async (request: Request) => {
     return NextResponse.json(newTask, { status: 201 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json("Failed to create a new Task", { status: 500 });
+    return NextResponse.json("Failed to create a new task", { status: 500 });
   }
 };
