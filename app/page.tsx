@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import { Flex } from "@chakra-ui/react";
 import AddTask from "@components/AddTask";
+import IsEmpty from "@components/IsEmpty";
 import Loading from "@components/Loading";
 import NoTask from "@components/NoTask";
 import Task from "@components/Task";
@@ -12,8 +13,13 @@ export default function Home() {
   const [task, setTask] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [allTasks, setAllTasks] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const handleCreateTask = async () => {
+    if (task.trim() === "") {
+      setIsEmpty(true);
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await fetch("/api/task/new", {
@@ -89,6 +95,7 @@ export default function Home() {
         setTask={setTask}
         handleCreateTask={handleCreateTask}
       />
+      {isEmpty && <IsEmpty />}
       {isLoading ? (
         <Loading />
       ) : (
